@@ -8,75 +8,116 @@
 <link rel="canonical" href="https://livorhospitality.vercel.app/privacy">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3d2f'/%3E%3Ctext x='32' y='46' font-size='38' text-anchor='middle' fill='%23c2a15a' font-family='Georgia,serif'%3EL%3C/text%3E%3C/svg%3E">
 <style>
-:root{
-  --green:#1e3d2f; --green-soft:#2f5b45; --gold:#b8973f; --gold-soft:#e7dcc0;
-  --paper:#fdfbf6; --cream:#f6f1e3; --ink:#26302a; --muted:#5d675f;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;scroll-padding-top:5rem;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.75}
-a{color:var(--green-soft);text-underline-offset:3px;text-decoration-color:var(--gold)}
-a:hover{color:var(--green)}
-a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+:root{--green:#1e3d2f;--gold:#b8973f;--gold-soft:#e7dcc0;--paper:#fdfbf6;--cream:#f6f1e3;--ink:#26302a;--muted:#5d675f;--head:#1e3d2f;--link:#2f5b45;--line:#e7dcc0;--hh:62px;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+[data-theme=dark]{--green:#0a150f;--paper:#0d1913;--cream:#15261e;--ink:#dfe7e0;--muted:#9fb0a4;--head:#ecdcae;--link:#94c8a9;--line:#2b4136}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 1.25rem);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.0625rem/1.75 var(--serif);transition:background .4s,color .4s}
+a{color:var(--link);text-underline-offset:3px;text-decoration-color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
 
-header.bar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;border-bottom:2px solid var(--gold);padding-top:env(safe-area-inset-top,0px)}
-.bar-in{max-width:860px;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans)}
+.bar{position:sticky;top:0;z-index:20;background:rgba(10,24,17,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;padding-top:env(safe-area-inset-top,0px);transition:box-shadow .3s}
+.bar.solid{box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.bar-in{max-width:1080px;margin:0 auto;height:var(--hh);padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans)}
 .mark{width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);color:var(--gold);font-size:1.1rem;flex:none}
-.bar-title{font-size:1rem;font-weight:600;letter-spacing:.02em}
-.bar-sub{margin-left:auto;font-size:.8rem;color:var(--gold-soft);white-space:nowrap}
+.bar-title{font-weight:600;letter-spacing:.02em}
+.bar-sub{margin-left:auto;font-size:.8rem;color:var(--gold-soft)}
+.tg{margin-left:.5rem;width:36px;height:36px;flex:none;border-radius:50%;border:1px solid rgba(184,151,63,.65);background:transparent;color:var(--gold-soft);display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.tg:hover{background:rgba(184,151,63,.2)}
+.tg svg{transition:transform .6s}
+[data-theme=dark] .tg svg{transform:rotate(180deg)}
+#prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#8d6f22,#e9cd83);transform:scaleX(0);transform-origin:left}
 
-.hero{background:var(--green);color:#fff;padding:3.25rem 1.25rem 3.5rem;border-bottom:6px solid var(--gold)}
-.hero-in{max-width:860px;margin:0 auto}
-.hero .place{font-family:var(--sans);font-size:.95rem;color:var(--gold-soft);margin:0 0 .6rem}
-.hero h1{font-weight:400;font-size:clamp(2.2rem,7vw,3.5rem);line-height:1.1;margin:0 0 1rem;letter-spacing:-.01em}
-.hero .lead{max-width:38rem;margin:0 0 1.25rem;color:#e9efe9;font-size:1.1rem}
-.hero .updated{display:inline-block;font-family:var(--sans);font-size:.9rem;border:1px solid var(--gold);color:var(--gold-soft);padding:.35rem .8rem;border-radius:999px}
+.hero{position:relative;overflow:hidden;color:#fff;min-height:min(84vh,700px);display:flex;align-items:center;border-bottom:4px solid var(--gold);background:radial-gradient(55% 70% at 60% 52%,rgba(214,176,86,.3),transparent 70%),linear-gradient(180deg,#081710 0%,#153125 55%,#2a5241 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.scene,#fx{position:absolute;inset:0;width:100%;height:100%}
+#fx{z-index:1}
+.hero-in{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:4rem 1.25rem 9rem}
+.place{font:.95rem var(--sans);color:var(--gold-soft);margin:0 0 1rem;letter-spacing:.02em}
+h1{font-weight:400;font-size:clamp(3rem,11vw,6.5rem);line-height:1;margin:0 0 1.25rem;letter-spacing:-.02em}
+.ln{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em}
+.ln>span{display:inline-block;animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.ln+.ln>span{animation-delay:.14s}
+.lead{max-width:34rem;margin:0 0 1.6rem;color:#dfe9e1;font-size:1.15rem}
+.hero-in>:not(h1){animation:fade 1s .55s both}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem}
+.chip{font:.88rem var(--sans);border:1px solid rgba(184,151,63,.7);color:var(--gold-soft);padding:.4rem .85rem;border-radius:999px;margin-right:.4rem}
+.btn{display:inline-block;font:600 .95rem var(--sans);padding:.75rem 1.3rem;border-radius:999px;background:var(--gold);color:#10231a;text-decoration:none;border:1px solid var(--gold);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#cbab55;color:#10231a}
+.btn.ghost{background:transparent;color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+@keyframes rise{from{transform:translateY(105%)}}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
 
-main{max-width:860px;margin:0 auto;padding:2.5rem 1.25rem 3rem}
-.glance{background:var(--cream);border-left:4px solid var(--gold);padding:1.25rem 1.4rem;margin:0 0 2.5rem}
-.glance h2{font-size:1.25rem;margin:0 0 .5rem;border:0;padding:0;color:var(--green)}
-.glance ul{margin:0;padding-left:1.2rem}
-.glance li{margin:.35rem 0}
+main{max-width:1080px;margin:0 auto;padding:3rem 1.25rem 3.5rem}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:3.5rem}
+.layout>*{grid-column:2}
+.layout>nav{grid-column:1;grid-row:1/span 40;align-self:start;position:sticky;top:calc(var(--hh) + 1.5rem)}
+.toc-t{font:600 1rem var(--serif);color:var(--head);margin:0 0 .75rem}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:c;font:.92rem/1.35 var(--sans)}
+nav li{counter-increment:c}
+nav a{display:block;padding:.4rem .9rem;border-left:2px solid var(--line);color:var(--muted);text-decoration:none;transition:.2s}
+nav a::before{content:counter(c) ". ";color:var(--gold)}
+nav a:hover{color:var(--head)}
+nav a.on{border-color:var(--gold);color:var(--head);font-weight:600;background:linear-gradient(90deg,rgba(184,151,63,.16),transparent)}
 
-nav.toc{margin:0 0 3rem;font-family:var(--sans)}
-nav.toc h2{font-family:var(--serif);font-size:1.25rem;color:var(--green);margin:0 0 .75rem;font-weight:600}
-nav.toc ol{margin:0;padding-left:1.4rem;columns:2;column-gap:2rem;font-size:.98rem}
-nav.toc li{margin:.3rem 0;break-inside:avoid}
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 3rem}
+.glance>div{background:var(--cream);padding:1.15rem 1.25rem}
+.glance b{display:block;font-size:1.15rem;color:var(--head);margin-bottom:.15rem}
+.glance b::before{content:"";display:inline-block;width:.42rem;height:.42rem;background:var(--gold);transform:rotate(45deg);margin-right:.65rem;vertical-align:.12em}
+.glance span{display:block;font-size:.95rem;line-height:1.5;color:var(--muted)}
 
-section{padding:0 0 .5rem;margin:0 0 2.25rem}
-h2{font-family:var(--serif);font-weight:600;font-size:1.6rem;line-height:1.25;color:var(--green);margin:0 0 1rem;padding-bottom:.6rem;border-bottom:1px solid var(--gold-soft)}
-h2 .n{color:var(--gold);margin-right:.5rem;font-weight:400}
-h3{font-size:1.08rem;color:var(--green);margin:1.5rem 0 .4rem}
+section{margin:0 0 2.75rem}
+h2{position:relative;font-weight:600;font-size:1.75rem;line-height:1.2;color:var(--head);margin:0 0 1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line)}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--gold),rgba(184,151,63,0));transform-origin:left;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.js h2::after{transform:scaleX(0)}
+.js section.seen h2::after{transform:scaleX(1)}
+h2 .n{color:var(--gold);font-weight:400;margin-right:.55rem}
 p{margin:0 0 1rem}
-ul{margin:0 0 1rem;padding-left:1.3rem}
+ul,ol{margin:0 0 1rem;padding-left:1.3rem}
 li{margin:.4rem 0}
 li::marker{color:var(--gold)}
-dl{margin:0 0 1rem}
-dt{font-weight:700;color:var(--green);margin-top:.9rem}
-dd{margin:.1rem 0 0}
-.note{background:var(--cream);border-left:4px solid var(--green-soft);padding:1rem 1.2rem;margin:1.25rem 0}
+dl{display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;margin:0 0 1.25rem}
+dt,dd{margin:0;padding:.75rem 0;border-top:1px solid var(--line)}
+dt{font-weight:700;color:var(--head);padding-right:1rem}
+dl>:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+.note{background:var(--cream);border-left:4px solid var(--gold);padding:1rem 1.2rem;margin:1.25rem 0}
 .note p:last-child{margin:0}
-.contact{background:var(--green);color:#fff;padding:1.5rem 1.6rem;border-radius:4px;border-top:4px solid var(--gold)}
-.contact p{margin:.2rem 0}
+.contact{background:var(--green);color:#fff;padding:1.6rem 1.7rem;border-radius:4px;border-top:4px solid var(--gold)}
+.contact p{margin:.25rem 0}
 .contact strong{color:var(--gold-soft);font-weight:600}
 .contact a{color:#fff;text-decoration-color:var(--gold);word-break:break-word}
-
-footer{background:var(--green);color:var(--gold-soft);text-align:center;font-family:var(--sans);font-size:.9rem;padding:1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));border-top:4px solid var(--gold)}
+footer{background:var(--green);color:var(--gold-soft);text-align:center;font:.9rem var(--sans);padding:1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));border-top:4px solid var(--gold)}
 footer p{margin:.2rem 0}
 
-@media (max-width:640px){
-  body{font-size:1rem}
-  .bar-sub{display:none}
-  .hero{padding:2.25rem 1.25rem 2.5rem}
-  nav.toc ol{columns:1}
-  h2{font-size:1.4rem}
+@media(max-width:900px){
+ html{scroll-padding-top:calc(var(--hh) + 4.5rem)}
+ .layout{display:block}
+ .layout>nav{position:sticky;top:var(--hh);z-index:15;margin:0 -1.25rem 2rem;padding:.6rem 1.25rem;background:var(--paper);border-bottom:1px solid var(--line)}
+ .toc-t{display:none}
+ nav ol{display:flex;gap:.5rem;overflow-x:auto;position:relative;scrollbar-width:none}
+ nav ol::-webkit-scrollbar{display:none}
+ nav a{border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;white-space:nowrap}
+ nav a.on{background:var(--gold);color:#10231a;border-color:var(--gold)}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{header.bar{position:static}}
+@media(max-width:640px){
+ body{font-size:1rem}
+ .bar-sub{display:none}
+ .tg{margin-left:auto}
+ .hero-in{padding:3rem 1.25rem 8rem}
+ .glance{grid-template-columns:1fr}
+ h2{font-size:1.5rem}
+ dl{display:block}
+ dt{border-top:1px solid var(--line);padding-bottom:0}
+ dd{border-top:0;padding-top:.15rem}
+ dl>:nth-last-child(-n+2){border-bottom:0}
+ dl>dd:last-child{border-bottom:1px solid var(--line)}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media print{.bar{position:static}#fx,.tg,.layout>nav,.hero .scene{display:none}}
 </style>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{d.dataset.theme=localStorage.getItem('livora-theme')||'light'}catch(e){d.dataset.theme='light'}})()</script>
 </head>
 <body>
 
@@ -85,32 +126,38 @@ footer p{margin:.2rem 0}
     <span class="mark" aria-hidden="true">L</span>
     <span class="bar-title">Livora – Privacy Policy</span>
     <span class="bar-sub">Corbett The Vedant By Livora</span>
+    <button class="tg" id="theme" type="button" aria-label="Switch between day and night theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
   </div>
+  <i id="prog"></i>
 </header>
 
 <div class="hero">
+  <svg class="scene" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><radialGradient id="sun"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".35" stop-color="#d9b862" stop-opacity=".5"/><stop offset="1" stop-color="#d9b862" stop-opacity="0"/></radialGradient></defs>
+    <g data-p=".5"><circle cx="820" cy="300" r="250" fill="url(#sun)"/><circle cx="820" cy="300" r="56" fill="#f4e3ad"/></g>
+    <g data-p=".35"><path fill="#2b5443" opacity=".8" d="M0 400C180 340 330 390 500 340S800 280 1000 350 1300 320 1440 370V640H0Z"/></g>
+    <g data-p=".22"><path fill="#1d3b2d" d="M0 470C220 410 380 470 600 420S940 390 1140 450 1350 430 1440 455V640H0Z"/></g>
+    <g data-p=".12"><path id="tl1" fill="#14291f"/></g>
+    <g data-p=".05"><path id="tl2" fill="#0b1a12"/></g>
+  </svg>
+  <canvas id="fx" aria-hidden="true"></canvas>
   <div class="hero-in">
     <p class="place">Corbett The Vedant By Livora · Jim Corbett National Park belt, Uttarakhand</p>
-    <h1>Privacy Policy</h1>
+    <h1><span class="ln"><span>Privacy</span></span> <span class="ln"><span>Policy</span></span></h1>
     <p class="lead">How the Livora Android app collects, uses and protects your personal information, and the choices you have.</p>
-    <span class="updated">Last updated: September 28, 2026</span>
+    <div class="acts">
+      <span class="chip">Last updated: September 28, 2026</span><span class="chip" id="rt">8 min read</span>
+      <a class="btn" href="#account-deletion">Request account deletion</a>
+      <a class="btn ghost" href="#contact">Contact us</a>
+    </div>
   </div>
 </div>
 
 <main>
-
-  <div class="glance">
-    <h2>In brief</h2>
-    <ul>
-      <li>We collect only what we need to manage your account, bookings and stay.</li>
-      <li>We do not sell your personal information, and the app does not show ads or use your data for advertising.</li>
-      <li>Bookings are Pay at Property. The app does not process online payments or collect card details.</li>
-      <li>You can ask us to delete your account at any time. See <a href="#account-deletion">Account Deletion</a>.</li>
-    </ul>
-  </div>
+<div class="layout">
 
   <nav class="toc" aria-label="Contents">
-    <h2>Contents</h2>
+    <p class="toc-t">Contents</p>
     <ol>
       <li><a href="#introduction">Introduction</a></li>
       <li><a href="#information-we-collect">Information We Collect</a></li>
@@ -126,6 +173,14 @@ footer p{margin:.2rem 0}
       <li><a href="#contact">Contact Us</a></li>
     </ol>
   </nav>
+  <div class="glance">
+    <div><b>Never sold</b><span>We do not sell your personal information.</span></div>
+    <div><b>No ads</b><span>The app has no advertising and no ad tracking.</span></div>
+    <div><b>Pay at Property</b><span>No online payments or card details in the app.</span></div>
+    <div><b>Delete on request</b><span>Ask and we will remove your account. <a href="#account-deletion">See how</a></span></div>
+  </div>
+
+  
 
   <section id="introduction">
     <h2><span class="n">1.</span>Introduction</h2>
@@ -205,6 +260,7 @@ footer p{margin:.2rem 0}
       <li>Send it from the email address registered on your account, and include your name and registered phone number so we can verify your identity.</li>
       <li>We will confirm by email once your request has been processed, within a reasonable time.</li>
     </ol>
+    <p><a class="btn" href="mailto:Livorahospitality06@gmail.com?subject=Account%20Deletion%20Request%20-%20Livora&amp;body=Hello%2C%0A%0APlease%20delete%20my%20Livora%20account%20and%20associated%20personal%20information.%0A%0AName%3A%20%0ARegistered%20email%3A%20%0ARegistered%20phone%3A%20%0A%0AThank%20you.">Draft the deletion email</a></p>
     <p>Deleting your account removes your profile and the personal information linked to it from the App. If you have an upcoming or active booking, we may need to complete or cancel it first.</p>
     <div class="note">
       <p>Some information may need to be kept where the law requires it or where it is necessary for legitimate records, such as booking and accounting records, dispute resolution or fraud prevention. We keep only what is needed and for no longer than necessary.</p>
@@ -251,6 +307,7 @@ footer p{margin:.2rem 0}
     </div>
   </section>
 
+</div>
 </main>
 
 <footer>
@@ -258,5 +315,49 @@ footer p{margin:.2rem 0}
   <p>Livora – Privacy Policy</p>
 </footer>
 
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
+const tg=$('#theme');
+const paint=()=>tg.setAttribute('aria-pressed',root.dataset.theme==='dark');paint();
+tg.onclick=()=>{const t=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=t;paint();try{localStorage.setItem('livora-theme',t)}catch(e){}};
+$('#rt').textContent=Math.max(1,Math.round($('main').innerText.trim().split(/\s+/).length/220))+' min read';
+
+const tl=(id,base,amp,step,seed)=>{let d='M0 640V'+base,i=0;for(let x=0;x<1440;x+=step,i++){const h=amp*(.55+.45*Math.sin(i*1.7+seed))+amp*.25*Math.sin(i*.45+seed*2);d+='Q'+(x+step/2)+' '+(base-h)+' '+(x+step)+' '+base}$(id).setAttribute('d',d+'V640Z')};
+tl('#tl1',545,62,46,1);tl('#tl2',596,44,32,4);
+
+const links=$$('nav.toc a'),ol=$('nav.toc ol'),bar=$('#prog'),hdr=$('.bar'),layers=$$('[data-p]'),hero=$('.hero');
+const act=id=>{let on=null;links.forEach(a=>{const y=a.getAttribute('href')==='#'+id;a.classList.toggle('on',y);if(y)on=a});
+ if(on&&getComputedStyle(ol).display==='flex')ol.scrollTo({left:on.offsetLeft-ol.clientWidth/2+on.offsetWidth/2,behavior:rm?'auto':'smooth'})};
+let tick=false;
+const onScroll=()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;
+ const y=scrollY,h=root.scrollHeight-innerHeight;
+ bar.style.transform='scaleX('+(h>0?Math.min(1,y/h):0)+')';
+ hdr.classList.toggle('solid',y>40);
+ if(!rm&&y<hero.offsetHeight)layers.forEach(l=>l.style.transform='translateY('+(y*l.dataset.p).toFixed(1)+'px)');
+ if(h>0&&y>=h-4)act(links[links.length-1].getAttribute('href').slice(1))})};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+const spy=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&act(e.target.id)),{rootMargin:'-20% 0px -65% 0px'});
+$$('section').forEach(s=>spy.observe(s));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');so.unobserve(e.target)}}),{threshold:.05,rootMargin:'0px 0px -8% 0px'});
+$$('section').forEach(s=>so.observe(s));
+
+const cv=$('#fx'),cx=cv.getContext('2d');let W=0,H=0,D=1,vis=true;
+const size=()=>{const r=cv.getBoundingClientRect();D=Math.min(devicePixelRatio||1,2);W=cv.width=r.width*D;H=cv.height=r.height*D};
+size();addEventListener('resize',size);
+const P=Array.from({length:Math.round(innerWidth/40)+16},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.6+.9,a:Math.random()*6.28,s:Math.random()*.02+.008,ph:Math.random()*6.28}));
+new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(hero);
+const draw=t=>{if(vis){cx.clearRect(0,0,W,H);
+ for(const p of P){p.a+=p.s*.16;p.x+=Math.cos(p.a)*.0005;p.y+=Math.sin(p.a*1.3)*.0004-.00005;
+  if(p.y<-.05)p.y=1.05;if(p.x<-.05)p.x=1.05;if(p.x>1.05)p.x=-.05;
+  const o=.3+.7*Math.abs(Math.sin(t*.0011+p.ph)),x=p.x*W,y=p.y*H,r=p.r*D*3.2;
+  const g=cx.createRadialGradient(x,y,0,x,y,r*3);g.addColorStop(0,'rgba(248,226,150,'+o+')');g.addColorStop(.3,'rgba(214,176,86,'+o*.3+')');g.addColorStop(1,'rgba(214,176,86,0)');
+  cx.fillStyle=g;cx.beginPath();cx.arc(x,y,r*3,0,6.283);cx.fill()}}
+ requestAnimationFrame(draw)};
+if(!rm)requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
